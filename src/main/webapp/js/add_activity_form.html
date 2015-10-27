@@ -1,0 +1,84 @@
+    <div class="container" ng-controller="ActivityController as activityCtrl">
+       <div class="modal fade" id="activityModel" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                            <h4 class="modal-title" id="myModalLabel" ng-hide="editMode">Agregar Actividad</h4>
+                            <h4 class="modal-title" id="myModalLabel" ng-show="editMode">Editar Actividad</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" role="form" name="addroleform" novalidate ng-submit="addActivity()" novalidate>
+                                <div class="form-group">
+						          <label class="control-label col-sm-3" for="user-name">Nombre Actividad:</label>
+						          <div class="col-sm-9">          
+						            <input id="text_nombre_role" type="text" class="form-control" id="user-name" ng-model="roleCtrl.role.nombre_rol" required>
+						          </div>
+						        </div>
+						        <div class="form-group">
+						          <label class="control-label col-sm-3" for="name">Descripcion: </label>
+						          <div class="col-sm-9">
+						            <textarea id="text_descripcion_role" rows="4" cols="50" class="form-control" id="name" ng-model="roleCtrl.role.descripcion" required></textarea>
+						          </div>
+						        </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-10">
+                                        <span data-ng-hide="editMode">
+                                            <input id="btn_add_role" type="submit" value="Add" ng-disabled="addroleform.$invalid" class="btn btn-primary" />
+                                        </span>
+                                        <span data-ng-show="editMode">
+                                            <input id="btn_updated_role" type="button" value="Update" ng-disabled="addroleform.$invalid" data-ng-click="updateRole()" class="btn btn-primary" />
+                                        </span>
+                                        <input type="button" value="Cancel" data-ng-click="cancel()" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+          
+		   <div class="modal fade" id="confirmRoleModal" tabindex="-1" role="dialog" aria-hidden="true">
+			 <div class="modal-dialog">
+				 <div class="modal-content">
+					 <div class="modal-header">
+					 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+					 <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+					 </div>
+					 <div class="modal-body">
+					 	Are you sure to delete?
+					 </div>
+					 <div class="modal-footer">
+					 <button type="button" class="btn btn-default" data-ng-click="deleteRole()">Ok</button>
+					 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					 </div>
+				 </div>
+			 </div>
+		 </div>
+     
+        <table class="table table-striped">
+		  <thead>	
+		    <tr>
+		      <th>Edit</th>
+		      <th>Role</th>
+		      <th>Descripcion</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr ng-repeat="role in roles">
+		      <td>
+		        <button class="btn" data-ng-click="editarModal(role)">
+		          <span class="glyphicon glyphicon-pencil"></span>
+		        </button>
+		        <button class="btn" data-ng-click="showDeleteModal(role)">
+		          <span class="glyphicon glyphicon-trash"></span>
+		        </button>
+		      </td>
+		      <td>{{ role.nombre_rol }}</td>
+		      <td>{{ role.descripcion }}</td>
+		    </tr>
+		  </tbody>
+		</table>
+		<button type="submit" data-ng-click="mostrarRoleModal()" class="btn btn-primary">Agregar Role</button>
+      </div>

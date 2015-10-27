@@ -1,0 +1,115 @@
+    <div class="container" ng-controller="ActivityController as activityCtrl">
+       <div class="modal fade" id="activityModel" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                            <h4 class="modal-title" id="myModalLabel" ng-hide="editMode">Agregar Actividad</h4>
+                            <h4 class="modal-title" id="myModalLabel" ng-show="editMode">Editar Actividad</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form-horizontal" role="form" name="addactivityform" novalidate ng-submit="addActividad()" novalidate>
+                                <div class="form-group">
+						          <label class="control-label col-sm-3" for="user-name">Nombre Actividad:</label>
+						          <div class="col-sm-9">          
+						            <input id="text_nombre_activity" type="text" class="form-control" id="user-name" ng-model="activityCtrl.nombre" required>
+						          </div>
+						        </div>
+						        <div class="form-group">
+						          <label class="control-label col-sm-3" for="name">Fecha Inicio: </label>
+						          <div class="col-sm-9">
+						            <input id="text_fecha_inicio_activity" type="text" class="form-control" id="name" ng-model="activityCtrl.fecha_inicio" required></textarea>
+						          </div>
+						        </div>
+						        <div class="form-group">
+						          <label class="control-label col-sm-3" for="name">Fecha Fin: </label>
+						          <div class="col-sm-9">
+						            <input id="text_fecha_fin_activity" type="text" class="form-control" id="name" ng-model="activityCtrl.fecha_fin" required></textarea>
+						          </div>
+						        </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-10">
+                               			<select size="10" id="myselection" multiple ng-multiple="true" ng-model="activityCtrl.rolActividadList" ng-options="a.nombre_rol for a in activityCtrl.roles"></select>
+                                	</div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-10">
+                                        <span data-ng-hide="editMode">
+                                            <input id="btn_add_activity" type="submit" value="Add" ng-disabled="addactivityform.$invalid" class="btn btn-primary" data-ng-click="addActivity()"/>
+                                        </span>
+                                        <span data-ng-show="editMode">
+                                            <input id="btn_updated_activity" type="button" value="Update" ng-disabled="addactivityform.$invalid" data-ng-click="updateActivity()" class="btn btn-primary" />
+                                        </span>
+                                        <input type="button" value="Cancel" data-ng-click="cancel()" class="btn btn-primary" />
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+          
+		   <div class="modal fade" id="confirmActivityModal" tabindex="-1" role="dialog" aria-hidden="true">
+			 <div class="modal-dialog">
+				 <div class="modal-content">
+					 <div class="modal-header">
+					 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+					 <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+					 </div>
+					 <div class="modal-body">
+					 	Are you sure to delete?
+					 </div>
+					 <div class="modal-footer">
+					 <button type="button" class="btn btn-default" data-ng-click="deleteActividad()">Ok</button>
+					 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					 </div>
+				 </div>
+			 </div>
+		 </div>
+		 
+		 <div class="modal fade" id="addActivityRoleModal" tabindex="-1" role="dialog" aria-hidden="true">
+			 <div class="modal-dialog">
+				 <div class="modal-content">
+					 <div class="modal-header">
+					 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+					 <h4 class="modal-title" id="myModalLabel">Confirm Action</h4>
+					 </div>
+					 <div class="modal-body">
+					 	Are you sure to delete?
+					 </div>
+					 <div class="modal-footer">
+					 <button type="button" class="btn btn-default" data-ng-click="deleteActividad()">Ok</button>
+					 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					 </div>
+				 </div>
+			 </div>
+		 </div>
+     
+        <table class="table table-striped">
+		  <thead>	
+		    <tr>
+		      <th>Edit</th>
+		      <th>Actividad</th>
+		      <th>Fecha Inicio</th>
+		      <th>Fecha Fin</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr ng-repeat="actividad in actividades">
+		      <td>
+		        <button class="btn" data-ng-click="editarModal(actividad)">
+		          <span class="glyphicon glyphicon-pencil"></span>
+		        </button>
+		        <button class="btn" data-ng-click="showDeleteModal(actividad)">
+		          <span class="glyphicon glyphicon-trash"></span>
+		        </button>
+		      </td>
+		      <td>{{ actividad.nombre }}</td>
+		      <td>{{ actividad.fecha_inicio }}</td>
+		      <td>{{ actividad.fecha_fin }}</td>
+		    </tr>
+		  </tbody>
+		</table>
+		<button type="submit" data-ng-click="showActivityModal()" class="btn btn-primary">Agregar Actividad</button>
+      </div>
