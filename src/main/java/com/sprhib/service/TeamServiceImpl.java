@@ -37,8 +37,8 @@ public class TeamServiceImpl implements TeamService {
 		Programacion programacion = new Programacion();
 		programacion.setLugar("Belen");
 		programacion.setEstablecimiento("Fonda los Amigos");
-		programacion.setFecha(Date.valueOf("2014-04-02"));
-		programacion.setHora(Time.valueOf("04:00:00"));
+//		programacion.setFecha(Date.valueOf("2014-04-02"));
+//		programacion.setHora(Time.valueOf("04:00:00"));
 		
 		List<Asignacion> asignaciones = new ArrayList<Asignacion>();
 		Asignacion asignacion = new Asignacion();
