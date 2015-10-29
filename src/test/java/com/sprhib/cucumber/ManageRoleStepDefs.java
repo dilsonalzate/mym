@@ -23,7 +23,7 @@ public class ManageRoleStepDefs {
 	@Given("^Usuario ingresa a la aplicacion$")
 	public void Usuario_ingresa_a_la_aplicacion() throws Throwable {
 		mDriver = new FirefoxDriver(new FirefoxProfile());
-		mDriver.get("http://localhost:8080/spr-mvc-hib/index.html");
+		mDriver.get("http://localhost:8080/mymlogistica/index.html");
 		
 	}
 
